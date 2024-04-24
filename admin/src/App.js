@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { Route, Routes, BrowserRouter, Link } from "react-router-dom";
+import CityForm from "./components/CityForm";
+import CityList from "./components/CityManagement";
+import SignIn from "./components/Login";
+import Navigation from "./components/Navigation";
+import SignUp from "./components/Registration";
+import BusManagement from "./components/BusManagement";
+import DashboardLayout from "./components/dashboard";
+import Error from "./components/Error";
+import UserManagement from "./components/UserManagement";
+import CityManagement from "./components/CityManagement";
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          
+      
+   
       </header>
+      <div className="App-body">
+       
+    
+      <BrowserRouter>
+      <DashboardLayout>
+      <Routes>
+        
+        <Route path='/' element={<SignIn/>} />
+        <Route path='/signin' element={<SignIn/>} />
+        <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/cit' element={<CityForm/>}/>
+        <Route path="/citymanagement" element={<CityManagement />} />
+        <Route path="/busmanagement" element={<BusManagement/>} />
+        <Route path="/usermanagement" element={<UserManagement/>} />
+        <Route path="*"  element={<Error/>} />
+       
+      </Routes>
+      </DashboardLayout>
+    </BrowserRouter>
+    
+            </div>
+            
     </div>
+
   );
 }
+
+
 
 export default App;

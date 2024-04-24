@@ -1,0 +1,44 @@
+.bus-management-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .new-bus-form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-group input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .all-buses {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .all-buses ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .all-buses li {
+    margin-bottom: 10px;
+  }
+  
