@@ -4,7 +4,7 @@ import CityForm from "./components/CityForm";
 import CityList from "./components/CityManagement";
 import SignIn from "./components/Login";
 import Navigation from "./components/Navigation";
-import SignUp from "./components/Registration";
+import SignUp from "./components/Signup";
 import BusManagement from "./components/BusManagement";
 import DashboardLayout from "./components/dashboard";
 import Error from "./components/Error";
@@ -22,20 +22,20 @@ function App() {
        
     
       <BrowserRouter>
-      <DashboardLayout>
+     
       <Routes>
         
         <Route path='/' element={<SignIn/>} />
         <Route path='/signin' element={<SignIn/>} />
         <Route path='/signup' element={<SignUp/>}/>
-        <Route path='/cit' element={<CityForm/>}/>
+        <Route path='/dashboard' element={<DashboardLayout/>}/>
         <Route path="/citymanagement" element={<CityManagement />} />
         <Route path="/busmanagement" element={<BusManagement/>} />
         <Route path="/usermanagement" element={<UserManagement/>} />
         <Route path="*"  element={<Error/>} />
        
       </Routes>
-      </DashboardLayout>
+     
     </BrowserRouter>
     
             </div>

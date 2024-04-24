@@ -45,7 +45,7 @@ const SignIn = () => {
       if (response.status === 200 && response.data.success) {
         // Set isLoggedIn to true on successful login
         setLoggedIn(true);
-        navigate('/book');
+        navigate('/dashboard');
       } else {
         console.error('Login failed. Please check your credentials.');
         // Add error handling logic for unsuccessful login

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserComponent from './UserComponent';
 import '../Styles/UserManagement.css';
+import DashboardLayout from './dashboard';
 import { error, success } from "../Utils/notification";
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -35,6 +36,7 @@ const UserManagement = () => {
   };
 
   return (
+    <DashboardLayout>
     <div>
     <h2>User Management</h2>
     <table className="user-table">
@@ -59,6 +61,7 @@ const UserManagement = () => {
       </tbody>
     </table>
   </div>
+  </DashboardLayout>
 );
 };
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../Styles/login.module.css";
-import { useDispatch } from "react-redux";
+
 import axios from "axios";
 import { error, success } from "../Utils/notification";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -35,10 +35,10 @@ function Signup() {
     } else {
       try {
         let response = await axios.post(
-          "http://localhost:8080/user/signup",
+          "http://localhost:8080/admin/signup",
           signUpcreds
         );
-        console.log(response);
+        //console.log(response);
         if (response.data.status === "Failed") {
           error(response.data.message);
         } else {

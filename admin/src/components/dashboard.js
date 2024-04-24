@@ -14,10 +14,29 @@ const DashboardLayout = ({ children }) => {
           <li><Link to="/usermanagement">User Management</Link></li>
           {/* Add more navigation links as needed */}
         </ul>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <ul><li><Link to="/signin">Logout</Link></li></ul>
       </nav>
       <main className="content">
         {children}
+        
       </main>
+      
     </div>
   );
 };

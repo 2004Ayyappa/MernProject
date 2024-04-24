@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { success, error } from "../Utils/notification"; // Import success and error functions
 import "../Styles/CityManagement.css";
-import CityForm from '././CityForm'
+import CityForm from '././CityForm';
+import DashboardLayout from "./dashboard";
 const CityManagement = () => {
   const [cities, setCities] = useState([]);
   const [updatedName, setUpdatedName] = useState("");
@@ -52,6 +53,7 @@ const CityManagement = () => {
   };
 
   return (
+    <DashboardLayout>
     <div className="city-management">
       <h2>Add New Cities</h2>
       <CityForm/>
@@ -98,7 +100,9 @@ const CityManagement = () => {
         </div>
       )}
     </div>
+    </DashboardLayout>
   );
+  
 };
 
 export default CityManagement;

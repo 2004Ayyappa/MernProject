@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Styles/BusManagement.css'; // Import CSS file for styling
-
+import DashboardLayout from './dashboard';
 function BusManagement() {
   const [buses, setBuses] = useState([]);
   const [newBusData, setNewBusData] = useState({
@@ -74,6 +74,7 @@ function BusManagement() {
 
 
   return (
+  <DashboardLayout>
     <div className="bus-management-container">
       <h2>Bus Management</h2>
 
@@ -205,6 +206,7 @@ function BusManagement() {
         </ul>
       </div>
     </div>
+    </DashboardLayout>
   );
 }
 
