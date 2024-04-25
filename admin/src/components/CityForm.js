@@ -4,20 +4,27 @@ import axios from "axios";
 const CityForm = () => {
   const [name, setName] = useState("");
   const [state, setState] = useState("");
+  const [error, setError] = useState("");
   
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!name.trim() || !state.trim()) {
+      alert("Please fill out all fields");
+      return;
+    }
     try {
       const response = await axios.post("http://localhost:8080/city/addcity", {
         name,
         state
      
       });
+      
       console.log("City added successfully:", response.data);
       alert("City added successfully")
       setName("");
       setState("");
+      setError("");
     } catch (error) {
       console.error("Error adding city:", error);
     }

@@ -123,4 +123,13 @@ app.put("/updateCity/:id", async (req, res) => {
   }
 });
 
+// Route to get the count of all cities
+app.get("/count", async (req, res) => {
+  try {
+    const cityCount = await CityModel.countDocuments();
+    res.status(200).json({ count: cityCount });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 module.exports = app;

@@ -86,5 +86,14 @@ app.delete("/deleteuser/:id", async (req, res) => {
   }
 });
 
+// Route to get the count of all users
+app.get("/count", async (req, res) => {
+  try {
+    const userCount = await UserModel.countDocuments();
+    res.status(200).json({ count: userCount });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 module.exports = app;

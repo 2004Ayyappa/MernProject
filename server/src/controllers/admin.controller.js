@@ -4,7 +4,7 @@ const AdminModel = require("../models/admin.model");
 
 const app = express.Router();
 
-app.post("/adminsignup", async (req, res) => {
+app.post("/signup", async (req, res) => {
   let { email } = req.body;
 
   try {
@@ -27,7 +27,7 @@ app.post("/adminsignup", async (req, res) => {
   }
 });
 
-app.post("/adminlogin", async (req, res) => {
+app.post("/login", async (req, res) => {
   let { email, password } = req.body;
    console.log(req.body);
   try {

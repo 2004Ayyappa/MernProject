@@ -1,7 +1,5 @@
 const express = require("express");
 const BusModel = require("../models/bus.model");
-const order = require("../models/order.model");
-
 const Order = require("../models/order.model");
 const moment = require("moment");
 const app = express.Router();
@@ -100,4 +98,13 @@ app.post("/myticket/past", async (req, res) => {
   }
 });
 
+// Route to get the count of all users
+app.get("/count", async (req, res) => {
+  try {
+    const orderCount = await Order.countDocuments();
+    res.status(200).json({ count: orderCount });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 module.exports = app;

@@ -3,7 +3,7 @@ import axios from "axios";
 import { success, error } from "../Utils/notification"; // Import success and error functions
 import "../Styles/CityManagement.css";
 import CityForm from '././CityForm';
-import DashboardLayout from "./dashboard";
+import DashboardLayout from "./DashboardLayout";
 const CityManagement = () => {
   const [cities, setCities] = useState([]);
   const [updatedName, setUpdatedName] = useState("");
@@ -36,6 +36,10 @@ const CityManagement = () => {
   };
 
   const handleUpdate = async (id) => {
+    if (!updatedName.trim() || !updatedState.trim()) {
+      alert("Please fill out all fields");
+      return;
+    }
     try {
       await axios.put(`http://localhost:8080/city/updateCity/${id}`, {
         name: updatedName,
@@ -57,6 +61,26 @@ const CityManagement = () => {
     <div className="city-management">
       <h2>Add New Cities</h2>
       <CityForm/>
+      
+      {/* Update Form */}
+      {selectedCity && (
+        <div> 
+          <h3>Update City</h3>
+          <input
+            type="text"
+            placeholder="New City Name"
+            value={updatedName}
+            onChange={(e) => setUpdatedName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="New State"
+            value={updatedState}
+            onChange={(e) => setUpdatedState(e.target.value)}
+          />
+          <button onClick={() => handleUpdate(selectedCity._id)}>Update</button>
+        </div>
+      )}
       <h2>List of Cities</h2>
       <table className="city-table">
         <thead>
@@ -80,25 +104,6 @@ const CityManagement = () => {
         </tbody>
       </table>
 
-      {/* Update Form */}
-      {selectedCity && (
-        <div>
-          <h3>Update City</h3>
-          <input
-            type="text"
-            placeholder="New City Name"
-            value={updatedName}
-            onChange={(e) => setUpdatedName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="New State"
-            value={updatedState}
-            onChange={(e) => setUpdatedState(e.target.value)}
-          />
-          <button onClick={() => handleUpdate(selectedCity._id)}>Update</button>
-        </div>
-      )}
     </div>
     </DashboardLayout>
   );

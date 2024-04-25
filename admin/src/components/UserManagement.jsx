@@ -1,9 +1,8 @@
 // UserManagement.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import UserComponent from './UserComponent';
 import '../Styles/UserManagement.css';
-import DashboardLayout from './dashboard';
+import DashboardLayout from './DashboardLayout';
 import { error, success } from "../Utils/notification";
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -52,7 +51,10 @@ const UserManagement = () => {
       <tbody>
         {users.map(user => (
           <tr key={user._id}>
-            <UserComponent user={user} />
+            <td> {user.email} </td>
+            <td> {user.password} </td>
+            <td> {user.gender} </td>
+            <td>  </td>
             <td>
               <button className="delete-button" onClick={() => deleteUser(user._id)}>Delete</button>
             </td>

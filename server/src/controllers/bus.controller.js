@@ -32,22 +32,17 @@ app.post('/bus/update/:id', async (req, res) => {
   }
 });
 
-app.post("/getall", async (req, res) => {
+app.get("/getall", async (req, res) => {
   // console.log(req.body);
   try {
-    let sourceStr = req.body.from;
-    let destinationStr = req.body.to;
-    let source = sourceStr.charAt(0).toUpperCase() + sourceStr.substr(1);
-    let destination =
-      destinationStr.charAt(0).toUpperCase() + destinationStr.substr(1);
-    let allbusses = await BusModel.find({
-      from: source,
-      to: destination,
-    });
-    return res.send(allbusses);
+    // Fetch all buses from the database
+    const buses = await BusModel.find();
+    res.status(200).json(buses); // Send the fetched buses as JSON response
   } catch (error) {
-    return res.send(error.message);
+    console.error('Error fetching buses:', error);
+    res.status(500).json({ message: 'Failed to fetch buses' }); // Send an error response
   }
+  
 });
 
 app.post("/one", async (req, res) => {
@@ -59,5 +54,13 @@ app.post("/one", async (req, res) => {
     return res.send(error.message);
   }
 });
-
+// Route to get the count of all buses
+app.get("/count", async (req, res) => {
+  try {
+    const busCount = await BusModel.countDocuments();
+    res.status(200).json({ count: busCount });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 module.exports = app;
