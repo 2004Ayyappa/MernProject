@@ -75,4 +75,45 @@ app.get("/count", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+app.put('/update/:id', async (req, res) => {
+  const { id } = req.params;
+  const { from, to, price } = req.body; // Assuming the request body contains fields to be updated
+  
+  try {
+    const updatedBus = await BusModel.findByIdAndUpdate(
+      id,
+      { from, to, price },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedBus) {
+      return res.status(404).json({ message: 'Bus not found' });
+    }
+
+    res.status(200).json(updatedBus); // Send back the updated bus details
+  } catch (err) {
+    console.error('Error updating bus:', err.message);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Route handler to delete a bus
+app.delete('/delete/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedBus = await BusModel.findByIdAndDelete(id);
+
+    if (!deletedBus) {
+      return res.status(404).json({ message: 'Bus not found' });
+    }
+
+    res.status(200).json({ message: 'Bus deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting bus:', err.message);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 module.exports = app;

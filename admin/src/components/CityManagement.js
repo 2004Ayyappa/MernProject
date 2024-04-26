@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { success, error } from "../Utils/notification"; // Import success and error functions
+import {  error } from "../Utils/notification"; // Import success and error functions
 import "../Styles/CityManagement.css";
 import CityForm from '././CityForm';
 import DashboardLayout from "./DashboardLayout";
@@ -27,7 +27,7 @@ const CityManagement = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/city/deleteCity/${id}`);
-      success("City deleted successfully");
+      alert("City deleted successfully");
       fetchData(); // Refresh the list of cities after deletion
     } catch (err) {
       console.error("Error deleting city:", err);
@@ -45,7 +45,7 @@ const CityManagement = () => {
         name: updatedName,
         state: updatedState,
       });
-      success("City updated successfully");
+      alert("City updated successfully");
       setUpdatedName("");
       setUpdatedState("");
       setSelectedCity(null);

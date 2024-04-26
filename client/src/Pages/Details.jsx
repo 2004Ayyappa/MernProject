@@ -37,7 +37,7 @@ function Details() {
   useEffect(() => {
     // Redirect to another page if the timer reaches 0
     if (timeLeft === 0) {
-      navigate("/selectbus");
+      navigate("/");
     }
   }, [timeLeft, navigate]);
 
