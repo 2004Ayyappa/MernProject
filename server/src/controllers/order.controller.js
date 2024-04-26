@@ -3,7 +3,7 @@ const BusModel = require("../models/bus.model");
 const Order = require("../models/order.model");
 const moment = require("moment");
 const app = express.Router();
-
+const User =require("../models/user.model");
 app.post("/", async (req, res) => {
    console.log("body", req.body);
   try {
@@ -46,11 +46,10 @@ app.delete("/oneorder/:id", async (req, res) => {
 });
 
 app.post("/myticket/today", async (req, res) => {
-   console.log("hi", req.body);
+
   const date = JSON.stringify(new Date()).split("T")[0].split('"')[1];
-   console.log("bye", date);
   try {
-    const order = await Order.find();
+    const order = await Order.find({ user: req.body.id });
      console.log(order);
     let data = order.filter((ele) => {
       let orderDate = JSON.stringify(ele.ticketSummary.date)
@@ -107,4 +106,28 @@ app.get("/count", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+app.get('/count/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    // Find the user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Find the bookings associated with the user
+    const bookings = await Order.find({ user: userId });
+
+    // Count the number of bookings
+    const count = bookings.length;
+
+    // Send the booking count in the response
+    res.json({ count });
+  } catch (error) {
+    console.error('Error fetching booking count:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 module.exports = app;

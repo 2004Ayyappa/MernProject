@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import styles from "../Styles/details.module.css";
@@ -22,6 +22,24 @@ function Details() {
     phone: "",
   };
   const [creds, setcreds] = useState(initialData);
+  const [timeLeft, setTimeLeft] = useState(300); // Timer set to 5 minutes (300 seconds)
+
+  useEffect(() => {
+    // Start the timer countdown
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+
+    // Clear the timer when the component unmounts
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    // Redirect to another page if the timer reaches 0
+    if (timeLeft === 0) {
+      navigate("/selectbus");
+    }
+  }, [timeLeft, navigate]);
 
   function hanldeChange(e) {
     setcreds({
@@ -85,6 +103,10 @@ function Details() {
   }
   return (
     <div className={styles.details}>
+            <div>
+        <p>Time Left: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? "0" : ""}{timeLeft % 60}</p>
+      </div>
+
       <form onSubmit={(e) => handleclick(e)}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -117,8 +139,8 @@ function Details() {
             onChange={hanldeChange}
           >
             <option selected>Select Your Gender</option>
-            <option value="men">Men</option>
-            <option value="women">Women</option>
+            <option value="men">Male</option>
+            <option value="women">Female</option>
           </select>
           <label htmlFor="floatingSelect">Gender</label>
         </div>

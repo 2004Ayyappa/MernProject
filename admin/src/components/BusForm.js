@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Styles/BusManagement.css'; // Import CSS file for styling
 import DashboardLayout from './DashboardLayout';
-
 function BusForm() {
   const [buses, setBuses] = useState([]);
   const [newBusData, setNewBusData] = useState({
@@ -57,6 +56,7 @@ function BusForm() {
           seats: []
         });
         alert("Bus added successfully");
+        
       } else {
         console.error('Invalid response received from server:', response.data);
       }
@@ -64,7 +64,6 @@ function BusForm() {
       console.error('Error adding new bus:', error.message);
     }
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewBusData({ ...newBusData, [name]: value });
@@ -186,13 +185,10 @@ function BusForm() {
           />
         </div>
 
-    
+         
+<center><button type="submit">Add Bus</button>
+</center>
       </form>
-
- 
-      
-<center><button type="submit">Add Bus</button></center>
-     
     </div>
     </DashboardLayout>
   );

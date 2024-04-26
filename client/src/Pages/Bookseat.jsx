@@ -68,8 +68,6 @@ function Bookseat() {
     }
   }
 
-  // console.log("DATAAAA", data);
-
   return (
     <>
       {" "}

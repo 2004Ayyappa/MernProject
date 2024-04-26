@@ -23,7 +23,11 @@ function Signup() {
       [name]: value,
     });
   };
-
+  const validateEmail = (email) => {
+    // Regular expression for email validation
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -32,13 +36,16 @@ function Signup() {
       signUpcreds.gender === ""
     ) {
       error("Plaese Fill All The Details");
+    }
+    else if (!validateEmail(signUpcreds.email)) {
+      error("Please enter a valid email address.");
     } else {
       try {
         let response = await axios.post(
           "http://localhost:8080/user/signup",
           signUpcreds
         );
-        //console.log(response);
+        //console.log(response);wa
         if (response.data.status === "Failed") {
           error(response.data.message);
         } else {

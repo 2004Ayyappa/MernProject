@@ -124,15 +124,14 @@ function Slider() {
         destination,
         date,
       });
-      if (res.data.status === "success") {
+      if (res.data.status === "success" ) {
         navigate({
           pathname: "/selectbus",
           search: `?from=${source}&to=${destination}&date=${date}`,
         });
       } else {
-        setsource("");
-        setdestination("");
-        error("City Not Found");
+        
+        error("Buses are not available for this route.");
       }
     } catch (error) {
       console.log(error);

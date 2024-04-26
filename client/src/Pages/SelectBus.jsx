@@ -56,7 +56,12 @@ function SelectBus() {
         error("Cities Not Found. Try Mumbai To Bangluru");
         return navigate("/")
       }
-      dispatch(saveDatafilter(res.data));
+      const filteredBuses = res.data.filter((bus) => {
+        return bus.from === from && bus.to === to;
+      });
+  
+      
+      dispatch(saveDatafilter(filteredBuses));
       setwentwrong(false);
     } catch (error) {
       console.log(error.message);
@@ -75,7 +80,7 @@ function SelectBus() {
     <>
       {wentwrong ? (
         <div className={styles.wrong}>
-          <img src={require("../Images/404-error-page-templates.png")} />
+         <h1 style={{color:"red",textAlign:"center"}}> 404 Error</h1>
         </div>
       ) : (
         <div className={styles.main}>

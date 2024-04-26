@@ -32,7 +32,7 @@ app.post('/bus/update/:id', async (req, res) => {
   }
 });
 
-app.get("/getall", async (req, res) => {
+app.post("/getall", async (req, res) => {
   // console.log(req.body);
   try {
     // Fetch all buses from the database
@@ -45,6 +45,18 @@ app.get("/getall", async (req, res) => {
   
 });
 
+app.get("/getall", async (req, res) => {
+  // console.log(req.body);
+  try {
+    // Fetch all buses from the database
+    const buses = await BusModel.find();
+    res.status(200).json(buses); // Send the fetched buses as JSON response
+  } catch (error) {
+    console.error('Error fetching buses:', error);
+    res.status(500).json({ message: 'Failed to fetch buses' }); // Send an error response
+  }
+  
+});
 app.post("/one", async (req, res) => {
   // console.log("hi");
   try {
