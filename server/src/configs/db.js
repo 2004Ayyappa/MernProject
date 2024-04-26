@@ -8,7 +8,7 @@
 // module.exports= connect;
 
 const mongoose = require("mongoose");
-
+require("dotenv").config();
 let connect = () => {
   return mongoose.connect(
     "mongodb+srv://admin:admin@cluster0.rkbqkvd.mongodb.net/Bus_Ticket?retryWrites=true&w=majority&appName=Cluster0",
