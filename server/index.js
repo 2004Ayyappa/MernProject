@@ -11,8 +11,12 @@ const paymentController = require('./src/controllers/payment.controller');
 // const cityRoutes = require("./routes/cityRoutes");
 const connect = require("./src/configs/db");
 
-app.use(cors(
- 
+app.use(cors({
+ {
+    origin:["https://swami-travel-bus.vercel.app"],
+    methods:["POST","GET"],
+    credentials:true
+  }
 ));
 app.use(express.json());
 app.use("/admin",adminRouter);
