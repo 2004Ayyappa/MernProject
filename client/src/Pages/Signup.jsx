@@ -42,7 +42,7 @@ function Signup() {
     } else {
       try {
         let response = await axios.post(
-          "http://localhost:8080/user/signup",
+          "https://swami-travels.vercel.app/user/signup",
           signUpcreds
         );
         //console.log(response);wa
