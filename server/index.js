@@ -15,7 +15,7 @@ app.use(cors({
  {
     origin:["https://swami-travel-bus.vercel.app"],
     methods:["POST","GET"],
-    credentials:true
+    credentials: true
   }
 ));
 app.use(express.json());
