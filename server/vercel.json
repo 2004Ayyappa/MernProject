@@ -2,7 +2,7 @@
     "version":2,
     "bulids":
     [
-       { "src":"*.js","use":"@vercel/node"}
+       { "src":"*.js","use":"@vercel/nodemon"}
 
     ],
     "routes":
