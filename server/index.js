@@ -13,8 +13,8 @@ const connect = require("./src/configs/db");
 
 app.use(cors({
  {
-    origin:["https://swami-travel-bus.vercel.app"],
-    methods:["POST","GET"],
+    origin:"https://swami-travel-bus.vercel.app",
+    methods:["POST","GET","PUT","DELETE"],
     credentials: true
   }
 ));
