@@ -44,7 +44,7 @@ function SelectBus() {
   async function getdata(from, to, date) {
    console.log(from, to, date);
     try {
-      let res = await axios.post("http://localhost:8080/bus/getall", {
+      let res = await axios.post("https://swamitravels-bbxl.onrender.com/bus/getall", {
         from,
         to,
         date,
@@ -53,7 +53,7 @@ function SelectBus() {
       // console.log("jihii",res.data);
       if(res.data.length===0) {
         
-        error("Cities Not Found. Try Mumbai To Bangluru");
+        error("Cities Not Found. Try with another cities");
         return navigate("/")
       }
       const filteredBuses = res.data.filter((bus) => {
